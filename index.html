@@ -34,7 +34,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 40px 20px;
         }
 
         .profile-card {
@@ -120,102 +120,4 @@
 
         .icon-box {
             width: 45px;
-            height: 45px;
-            background-color: rgba(212, 163, 115, 0.12);
-            border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 20px;
-            transition: all 0.3s ease;
-        }
-
-        .info-item:hover .icon-box {
-            background-color: var(--accent-caramel);
-        }
-
-        .info-item:hover .icon-box i {
-            color: #fff;
-        }
-
-        .icon-box i {
-            font-size: 1.25rem;
-            color: var(--accent-caramel);
-            transition: color 0.3s ease;
-        }
-
-        .info-content .label {
-            font-size: 0.85rem;
-            color: #a09590;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 2px;
-        }
-
-        .info-content .value {
-            font-size: 1.05rem;
-            color: var(--dark-brown);
-            font-weight: 400;
-        }
-
-        /* ตกแต่งสีหัวใจเป็นพิเศษ */
-        .fa-heart {
-            animation: heartbeat 1.5s infinite;
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-    </style>
-</head>
-<body>
-
-    <div class="profile-card">
-        <div class="profile-header">
-            <div class="avatar-container">
-                <i class="fa-solid fa-child-dress"></i>
-            </div>
-            <h1>เด็กหญิง วรรณธรรม</h1>
-            <span class="nickname"><i class="fa-solid fa-coffee-bean" style="font-size: 0.85rem; margin-right: 5px;"></i>ชื่อเล่น: กาแฟ</span>
-        </div>
-
-        <div class="profile-body">
-            <div class="info-item">
-                <div class="icon-box">
-                    <i class="fa-solid fa-cake-candles"></i>
-                </div>
-                <div class="info-content">
-                    <div class="label">วันเกิด</div>
-                    <div class="value">10 กรกฎาคม พ.ศ. 2554</div>
-                </div>
-            </div>
-
-            <div class="info-item">
-                <div class="icon-box">
-                    <i class="fa-solid fa-drumstick-bite"></i>
-                </div>
-                <div class="info-content">
-                    <div class="label">อาหารที่ชอบ</div>
-                    <div class="value">ไก่ทอดอร่อยๆ 🍗</div>
-                </div>
-            </div>
-
-            <div class="info-item">
-                <div class="icon-box">
-                    <i class="fa-solid fa-heart"></i>
-                </div>
-                <div class="info-content">
-                    <div class="label">สีที่ชอบ</div>
-                    <div class="value" style="display: flex; align-items: center; gap: 8px;">
-                        สีครีม 
-                        <span style="display: inline-block; width: 18px; height: 18px; background-color: #FFFDD0; border: 1px solid #E6CCB2; border-radius: 50%;"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</body>
-</html>
+            height: 45
