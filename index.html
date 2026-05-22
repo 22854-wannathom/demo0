@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ประวัติส่วนตัว - น้องกาแฟ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Mitr:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-cream: #FDFBF7;
+            --warm-beige: #F4EAE1;
+            --accent-caramel: #D4A373;
+            --dark-brown: #4A3E3D;
+            --text-color: #5C5552;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Kanit', sans-serif;
+            background-color: var(--warm-beige);
+            background-image: radial-gradient(rgba(212, 163, 115, 0.15) 1px, transparent 0);
+            background-size: 24px 24px;
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .profile-card {
+            background-color: var(--primary-cream);
+            width: 100%;
+            max-width: 450px;
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(74, 62, 61, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 12px;
+            background: linear-gradient(90deg, var(--accent-caramel), #E6CCB2);
+        }
+
+        .profile-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .profile-header {
+            text-align: center;
+            padding: 40px 20px 20px 20px;
+            background: linear-gradient(to bottom, rgba(244, 234, 225, 0.3), transparent);
+        }
+
+        .avatar-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 15px;
+            background-color: var(--warm-beige);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 4px solid #fff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        .avatar-container i {
+            font-size: 3.5rem;
+            color: var(--accent-caramel);
+        }
+
+        .profile-header h1 {
+            font-family: 'Mitr', sans-serif;
+            font-size: 1.8rem;
+            color: var(--dark-brown);
+            margin-bottom: 5px;
+        }
+
+        .nickname {
+            display: inline-block;
+            background-color: var(--warm-beige);
+            color: var(--dark-brown);
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .profile-body {
+            padding: 10px 35px 40px 35px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .icon-box {
+            width: 45px;
+            height: 45px;
+            background-color: rgba(212, 163, 115, 0.12);
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .info-item:hover .icon-box {
+            background-color: var(--accent-caramel);
+        }
+
+        .info-item:hover .icon-box i {
+            color: #fff;
+        }
+
+        .icon-box i {
+            font-size: 1.25rem;
+            color: var(--accent-caramel);
+            transition: color 0.3s ease;
+        }
+
+        .info-content .label {
+            font-size: 0.85rem;
+            color: #a09590;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+
+        .info-content .value {
+            font-size: 1.05rem;
+            color: var(--dark-brown);
+            font-weight: 400;
+        }
+
+        /* ตกแต่งสีหัวใจเป็นพิเศษ */
+        .fa-heart {
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-card">
+        <div class="profile-header">
+            <div class="avatar-container">
+                <i class="fa-solid fa-child-dress"></i>
+            </div>
+            <h1>เด็กหญิง วรรณธรรม</h1>
+            <span class="nickname"><i class="fa-solid fa-coffee-bean" style="font-size: 0.85rem; margin-right: 5px;"></i>ชื่อเล่น: กาแฟ</span>
+        </div>
+
+        <div class="profile-body">
+            <div class="info-item">
+                <div class="icon-box">
+                    <i class="fa-solid fa-cake-candles"></i>
+                </div>
+                <div class="info-content">
+                    <div class="label">วันเกิด</div>
+                    <div class="value">10 กรกฎาคม พ.ศ. 2554</div>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="icon-box">
+                    <i class="fa-solid fa-drumstick-bite"></i>
+                </div>
+                <div class="info-content">
+                    <div class="label">อาหารที่ชอบ</div>
+                    <div class="value">ไก่ทอดอร่อยๆ 🍗</div>
+                </div>
+            </div>
+
+            <div class="info-item">
+                <div class="icon-box">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+                <div class="info-content">
+                    <div class="label">สีที่ชอบ</div>
+                    <div class="value" style="display: flex; align-items: center; gap: 8px;">
+                        สีครีม 
+                        <span style="display: inline-block; width: 18px; height: 18px; background-color: #FFFDD0; border: 1px solid #E6CCB2; border-radius: 50%;"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
