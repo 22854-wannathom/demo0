@@ -1,241 +1,353 @@
-<!DOCTYPE html>
+# Create an HTML file for the student's personal profile card based on the prompt instructions.
+# Requirements: Modern card, clean, blue color scheme, clear sections, skills as tags, includes quote, supports A4 printing.
+
+html_content = """<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประวัติส่วนตัว - น้องกาแฟ</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;600&family=Mitr:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>การ์ดประวัติส่วนตัวนักเรียน - ด.ญ.วรรณธรรม ธนธรรมธร</title>
     <style>
-        :root {
-            --primary-cream: #FDFBF7;
-            --warm-beige: #F4EAE1;
-            --accent-caramel: #D4A373;
-            --dark-brown: #4A3E3D;
-            --text-color: #5C5552;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
 
         * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
         }
 
         body {
-            font-family: 'Kanit', sans-serif;
-            background-color: var(--warm-beige);
-            background-image: radial-gradient(rgba(212, 163, 115, 0.15) 1px, transparent 0);
-            background-size: 24px 24px;
-            color: var(--text-color);
+            background-color: #f0f4f8;
+            color: #334155;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 40px 20px;
+            padding: 20px;
         }
 
+        /* Container designed to fit nicely on standard screen and optimized for A4 print */
         .profile-card {
-            background-color: var(--primary-cream);
+            background: #ffffff;
             width: 100%;
-            max-width: 450px;
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(74, 62, 61, 0.1);
+            max-width: 800px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
             overflow: hidden;
-            transition: transform 0.3s ease;
+            border: 1px solid #e2e8f0;
             position: relative;
         }
 
-        .profile-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 12px;
-            background: linear-gradient(90deg, var(--accent-caramel), #E6CCB2);
+        /* Header Accent (Blue Theme) */
+        .card-header {
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+            color: #ffffff;
+            padding: 35px 40px;
+            position: relative;
         }
 
-        .profile-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .profile-header {
-            text-align: center;
-            padding: 40px 20px 20px 20px;
-            background: linear-gradient(to bottom, rgba(244, 234, 225, 0.3), transparent);
-        }
-
-        .avatar-container {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 15px;
-            background-color: var(--warm-beige);
-            border-radius: 50%;
+        .header-main {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 4px solid #fff;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            justify-content: space-between;
+            align-items: flex-start;
         }
 
-        .avatar-container i {
-            font-size: 3.5rem;
-            color: var(--accent-caramel);
-        }
-
-        .profile-header h1 {
-            font-family: 'Mitr', sans-serif;
-            font-size: 1.8rem;
-            color: var(--dark-brown);
-            margin-bottom: 5px;
-        }
-
-        .nickname {
-            display: inline-block;
-            background-color: var(--warm-beige);
-            color: var(--dark-brown);
-            padding: 4px 16px;
-            border-radius: 20px;
-            font-size: 0.95rem;
-            font-weight: 600;
-        }
-
-        .profile-body {
-            padding: 10px 35px 40px 35px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(212, 163, 115, 0.2);
-        }
-
-        .info-item:last-child {
-            border-bottom: none;
-        }
-
-        .icon-box {
-            width: 45px;
-            height: 45px;
-            background-color: rgba(212, 163, 115, 0.12);
-            border-radius: 12px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 20px;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
-        }
-
-        .info-item:hover .icon-box {
-            background-color: var(--accent-caramel);
-        }
-
-        .info-item:hover .icon-box i {
-            color: #fff;
-        }
-
-        .icon-box i {
-            font-size: 1.25rem;
-            color: var(--accent-caramel);
-            transition: color 0.3s ease;
-        }
-
-        .info-content .label {
-            font-size: 0.85rem;
-            color: #a09590;
-            text-transform: uppercase;
+        .student-info h1 {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 6px;
             letter-spacing: 0.5px;
-            margin-bottom: 2px;
         }
 
-        .info-content .value {
-            font-size: 1.05rem;
-            color: var(--dark-brown);
-            font-weight: 400;
+        .student-info .nickname {
+            font-size: 18px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 3px 12px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 12px;
+            font-weight: 500;
         }
 
-        .fa-heart {
-            animation: heartbeat 1.5s infinite;
+        .school-info {
+            font-size: 15px;
+            opacity: 0.95;
+            line-height: 1.6;
         }
 
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        .school-info .highlight {
+            font-weight: 600;
+            color: #e0f2fe;
+        }
+
+        /* Quote Section inside Header */
+        .motto-box {
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-left: 4px solid #bae6fd;
+            padding: 10px 15px;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .motto-box p {
+            font-style: italic;
+            font-size: 14px;
+            color: #f0f9ff;
+        }
+
+        /* Main Content Grid */
+        .card-body {
+            padding: 4px 40px 35px 40px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0369a1;
+            margin: 25px 0 12px 0;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #e0f2fe;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Info Grid Layout using float/table fallback styles for older systems, but utilizing standard blocks */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px 24px;
+        }
+
+        /* Print friendly CSS Grid alternative for broad support */
+        .info-row {
+            display: flex;
+            border-bottom: 1px dashed #f1f5f9;
+            padding: 6px 0;
+            font-size: 14px;
+        }
+
+        .info-label {
+            font-weight: 600;
+            color: #64748b;
+            width: 110px;
+            flex-shrink: 0;
+        }
+
+        .info-value {
+            color: #1e293b;
+        }
+
+        /* Three column grid for specific sections */
+        .info-grid-three {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px 20px;
+        }
+
+        /* Skills/Tags Layout */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .tag-pill {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid #bae6fd;
+        }
+        
+        .tag-pill.hobby {
+            background-color: #f0fdf4;
+            color: #166534;
+            border-color: #bbf7d0;
+        }
+
+        .tag-pill.sport {
+            background-color: #faf5ff;
+            color: #6b21a8;
+            border-color: #e9d5ff;
+        }
+
+        /* Print Media Query Optimization for A4 */
+        @media print {
+            body {
+                background-color: #ffffff;
+                padding: 0;
+                margin: 0;
+            }
+            .profile-card {
+                box-shadow: none;
+                border: none;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .card-header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+                background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+                color: #ffffff !important;
+            }
+            .tag-pill {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .section-title {
+                border-bottom-color: #0369a1 !important;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .info-grid, .info-grid-three {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .card-body {
+                padding: 10px 20px 25px 20px;
+            }
+            .card-header {
+                padding: 25px 20px;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="profile-card">
-        <div class="profile-header">
-            <div class="avatar-container">
-                <i class="fa-solid fa-child-dress"></i>
+        <div class="card-header">
+            <div class="header-main">
+                <div class="student-info">
+                    <span class="nickname">ชื่อเล่น: กาแฟ</span>
+                    <h1>ด.ญ.วรรณธรรม ธนธรรมธร</h1>
+                    <div class="school-info">
+                        โรงเรียน<span class="highlight">จอมทอง</span> &nbsp;|&nbsp; ระดับชั้น <span class="highlight">ม.3/2</span>
+                    </div>
+                </div>
             </div>
-            <h1>เด็กหญิง วรรณธรรม</h1>
-            <span class="nickname"><i class="fa-solid fa-cookie-bean" style="font-size: 0.85rem; margin-right: 5px;"></i>ชื่อเล่น: กาแฟ</span>
+            
+            <div class="motto-box">
+                <p><strong>คติประจำใจ:</strong> "เป็นตัวเองในเวอร์ชั่นที่ดีที่สุด"</p>
+            </div>
         </div>
 
-        <div class="profile-body">
-            <div class="info-item">
-                <div class="icon-box">
-                    <i class="fa-solid fa-cake-candles"></i>
+        <div class="card-body">
+            
+            <div class="section-title">ข้อมูลทั่วไป (General Information)</div>
+            <div class="info-grid">
+                <div class="info-row">
+                    <div class="info-label">วันเกิด</div>
+                    <div class="info-value">10 กรกฎาคม 2554</div>
                 </div>
-                <div class="info-content">
-                    <div class="label">วันเกิด</div>
-                    <div class="value">10 กรกฎาคม พ.ศ. 2554</div>
+                <div class="info-row">
+                    <div class="info-label">เพศ</div>
+                    <div class="info-value">หญิง</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">กรุ๊ปเลือด</div>
+                    <div class="info-value">AB</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">ราศี</div>
+                    <div class="info-value">กรกฎ</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">ส่วนสูง</div>
+                    <div class="info-value">159 เซนติเมตร</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">ภูมิลำเนา</div>
+                    <div class="info-value">เชียงใหม่</div>
                 </div>
             </div>
 
-            <div class="info-item">
-                <div class="icon-box">
-                    <i class="fa-solid fa-book-open-reader"></i>
+            <div class="section-title">การเรียนและกิจกรรม (Academic & Activities)</div>
+            <div class="info-grid-three">
+                <div class="info-row">
+                    <div class="info-label">วิชาที่ชอบ</div>
+                    <div class="info-value" style="color: #0d9488; font-weight: 600;">ภาษาไทย</div>
                 </div>
-                <div class="info-content">
-                    <div class="label">วิชาที่ชอบ</div>
-                    <div class="value">ภาษาไทย, ศิลปะ 🎨</div>
+                <div class="info-row">
+                    <div class="info-label">วิชาที่ยาก</div>
+                    <div class="info-value" style="color: #e11d48; font-weight: 600;">ภาษาอังกฤษ</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">ชมรม/กิจกรรม</div>
+                    <div class="info-value">มหิงสา</div>
+                </div>
+            </div>
+            <div class="info-grid" style="margin-top: 4px;">
+                <div class="info-row">
+                    <div class="info-label">เพื่อนสนิท</div>
+                    <div class="info-value">ข้าวหอม</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">ความฝัน/อาชีพ</div>
+                    <div class="info-value" style="font-weight: 600; color: #0369a1;">สถาปนิก</div>
                 </div>
             </div>
 
-            <div class="info-item">
-                <div class="icon-box">
-                    <i class="fa-solid fa-drumstick-bite"></i>
+            <div class="section-title">ไลฟ์สไตล์และความชอบ (Lifestyle & Preferences)</div>
+            <div class="info-grid">
+                <div class="info-row">
+                    <div class="info-label">อาหารโปรด</div>
+                    <div class="info-value">ปีกไก่ทอด</div>
                 </div>
-                <div class="info-content">
-                    <div class="label">อาหารที่ชอบ</div>
-                    <div class="value">ไก่ทอดอร่อยๆ 🍗</div>
+                <div class="info-row">
+                    <div class="info-label">สีโปรด</div>
+                    <div class="info-value">ครีม</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">เพลงที่ชอบ</div>
+                    <div class="info-value">สิงคโปร์(feat.SIMON) - 2K,BABYBIGBOY</div>
+                </div>
+                <div class="info-row">
+                    <div class="info-label">ซีรีส์/อนิเมะ</div>
+                    <div class="info-value">wind Breaker</div>
                 </div>
             </div>
 
-            <div class="info-item">
-                <div class="icon-box">
-                    <i class="fa-solid fa-heart"></i>
+            <div class="section-title">ทักษะและความสนใจ (Skills & Interests)</div>
+            <div style="margin-top: 5px;">
+                <div style="font-size: 13px; color: #64748b; margin-bottom: 6px; font-weight: 600;">ทักษะความสามารถ:</div>
+                <div class="tags-container">
+                    <span class="tag-pill">วาดภาพ</span>
+                    <span class="tag-pill">ถ่ายรูป</span>
+                    <span class="tag-pill">ทำอาหาร</span>
                 </div>
-                <div class="info-content">
-                    <div class="label">สีที่ชอบ</div>
-                    <div class="value" style="display: flex; align-items: center; gap: 8px;">
-                        สีครีม 
-                        <span style="display: inline-block; width: 18px; height: 18px; background-color: #FFFDD0; border: 1px solid #E6CCB2; border-radius: 50%;"></span>
+            </div>
+            
+            <div style="margin-top: 15px; display: flex; gap: 20px; flex-wrap: wrap;">
+                <div>
+                    <div style="font-size: 13px; color: #64748b; margin-bottom: 6px; font-weight: 600;">งานอดิเรก:</div>
+                    <div class="tags-container">
+                        <span class="tag-pill hobby">วาดรูป</span>
+                    </div>
+                </div>
+                <div>
+                    <div style="font-size: 13px; color: #64748b; margin-bottom: 6px; font-weight: 600;">กีฬา:</div>
+                    <div class="tags-container">
+                        <span class="tag-pill sport">แบดมินตัน</span>
                     </div>
                 </div>
             </div>
 
-            <div class="info-item">
-                <div class="icon-box">
-                    <i class="fa-solid fa-user-group"></i>
-                </div>
-                <div class="info-content">
-                    <div class="label">เพื่อนสนิท</div>
-                    <div class="value">ข้าวหอม 🤍</div>
-                </div>
-            </div>
         </div>
     </div>
 
 </body>
 </html>
+"""
+
+# Save the HTML file
+file_path = "student_profile_card.html"
+with open(file_path, "w", encoding="utf-8") as file:
+    file.write(html_content)
+
+print(f"File generated successfully: {file_path}")
