@@ -3,19 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประวัติส่วนตัว - ด.ญ.วรรณธรรม ธนธรรมธร</title>
+    <title>ประวัติส่วนตัว (Colorful Edition) - ด.ญ.วรรณธรรม ธนธรรมธร</title>
     <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #0ea5e9;
             --dark-blue: #0369a1;
             --light-blue: #e0f2fe;
-            --bg-color: #f0f4f8;
             --text-dark: #1e293b;
             --text-light: #64748b;
             --white: #ffffff;
-            --card-shadow: 0 10px 15px -3px rgba(3, 105, 161, 0.1), 0 4px 6px -2px rgba(3, 105, 161, 0.05);
-            --inner-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            /* New Colorful Accents */
+            --rainbow-1: #ef4444; /* Red */
+            --rainbow-2: #f97316; /* Orange */
+            --rainbow-3: #eab308; /* Yellow */
+            --rainbow-4: #22c55e; /* Green */
+            --rainbow-5: #06b6d4; /* Teal */
+            --rainbow-6: #8b5cf6; /* Violet */
+            --rainbow-7: #d946ef; /* Pink */
+            --card-shadow: 0 15px 30px rgba(3, 105, 161, 0.15);
+            --bg-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
         }
 
         * {
@@ -25,8 +32,29 @@
             font-family: 'Kanit', sans-serif;
         }
 
+        /* ---------------------------------------------------- */
+        /* Animated Background Elements (Screens Only) */
+        /* ---------------------------------------------------- */
+        @keyframes floatBg {
+            0% { transform: translateY(0px) rotate(0deg); opacity: 0.5; }
+            50% { transform: translateY(-30px) rotate(180deg); opacity: 0.7; }
+            100% { transform: translateY(0px) rotate(360deg); opacity: 0.5; }
+        }
+
+        .floating-blob {
+            position: fixed;
+            border-radius: 50%;
+            z-index: -1;
+            animation: floatBg 20s infinite ease-in-out;
+            opacity: 0.5;
+            filter: blur(50px);
+        }
+
+        /* ---------------------------------------------------- */
+        /* Content Styles */
+        /* ---------------------------------------------------- */
         body {
-            background-color: var(--bg-color);
+            background-color: #f1f7fe;
             color: var(--text-dark);
             line-height: 1.6;
             display: flex;
@@ -34,9 +62,9 @@
             align-items: center;
             min-height: 100vh;
             padding: 2rem 1rem;
+            position: relative;
         }
 
-        /* Container designed to fit on standard screen and optimized for A4 print */
         .card-container {
             background-color: var(--white);
             width: 100%;
@@ -46,12 +74,40 @@
             overflow: hidden;
             border: 1px solid #e0f2fe;
             position: relative;
+            z-index: 1; /* Keep card on top of blobs */
         }
 
-        /* Enhanced Header with Gradient Overlay */
+        /* Animated Wavy Line at Bottom */
+        @keyframes wavyMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .wavy-footer {
+            height: 10px;
+            background: linear-gradient(90deg, 
+                var(--rainbow-1), var(--rainbow-2), var(--rainbow-3), 
+                var(--rainbow-4), var(--rainbow-5), var(--rainbow-6), 
+                var(--rainbow-7), var(--rainbow-1)
+            );
+            background-size: 200% auto;
+            animation: wavyMove 5s infinite linear;
+        }
+
+        /* Header Styles */
+        @keyframes rainbowBorder {
+            0% { border-color: var(--rainbow-1); }
+            14% { border-color: var(--rainbow-2); }
+            28% { border-color: var(--rainbow-3); }
+            42% { border-color: var(--rainbow-4); }
+            57% { border-color: var(--rainbow-5); }
+            71% { border-color: var(--rainbow-6); }
+            85% { border-color: var(--rainbow-7); }
+            100% { border-color: var(--rainbow-1); }
+        }
+
         .header {
-            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue)),
-                        linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%);
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
             color: var(--white);
             padding: 4rem 3rem;
             display: grid;
@@ -59,6 +115,26 @@
             align-items: center;
             gap: 2.5rem;
             position: relative;
+        }
+
+        /* Mascot in Header - A little colorful bird waving */
+        @keyframes waveMascot {
+            0% { transform: translate(10px, 10px) rotate(0deg); }
+            20% { transform: translate(10px, 10px) rotate(-10deg); }
+            40% { transform: translate(10px, 10px) rotate(10deg); }
+            60% { transform: translate(10px, 10px) rotate(0deg); }
+            100% { transform: translate(10px, 10px) rotate(0deg); }
+        }
+
+        .header-mascot {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            z-index: 3;
+            transform: translate(10px, 10px);
+            animation: waveMascot 4s infinite ease-in-out;
         }
 
         .header::after {
@@ -69,7 +145,6 @@
             right: 0;
             height: 15px;
             background: var(--white);
-            border-top: 1px solid #e0f2fe;
             z-index: 1;
         }
 
@@ -84,7 +159,8 @@
             border-radius: 50%;
             object-fit: cover;
             border: 6px solid var(--white);
-            box-shadow: var(--card-shadow);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            animation: rainbowBorder 10s infinite linear; /* Animated rainbow border */
         }
 
         .header-text {
@@ -111,7 +187,6 @@
             font-weight: 600;
             margin: 0;
             letter-spacing: -1px;
-            -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.3);
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
 
@@ -130,26 +205,58 @@
             border-radius: 0 10px 10px 0;
             font-style: italic;
             font-weight: 300;
-            box-shadow: var(--inner-shadow);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
-        /* Body Content with 3 Columns Layout */
+        /* Body Content Layout */
         .body-content {
             padding: 4rem 3rem;
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr; /* Split into 3 columns */
+            grid-template-columns: 1fr 1fr 1fr;
             gap: 3rem;
+            position: relative;
+        }
+
+        /* Mascot in Body - Colorful star twinkling */
+        @keyframes sparkleMascot {
+            0% { opacity: 0.5; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.1); }
+            100% { opacity: 0.5; transform: scale(0.8); }
+        }
+
+        .body-mascot-1 {
+            position: absolute;
+            top: 2rem;
+            left: -1rem;
+            width: 40px;
+            height: 40px;
+            animation: sparkleMascot 2s infinite ease-in-out;
+            color: var(--rainbow-3); /* Yellow twinkling star */
+            z-index: 0;
+        }
+
+        .body-mascot-2 {
+            position: absolute;
+            bottom: 2rem;
+            right: -1rem;
+            width: 40px;
+            height: 40px;
+            animation: sparkleMascot 3s infinite ease-in-out 1s; /* Delayed Pink sparkling star */
+            color: var(--rainbow-7); 
+            z-index: 0;
         }
 
         .info-card {
             background-color: var(--white);
             border-radius: 16px;
-            box-shadow: var(--inner-shadow);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.03);
             border: 1px solid #f1f5f9;
             padding: 2.5rem 2rem;
             display: grid;
             gap: 2.5rem;
             align-content: start;
+            position: relative;
+            z-index: 1;
         }
 
         .section-title {
@@ -179,10 +286,17 @@
         }
 
         .info-icon {
-            color: var(--primary-blue);
             width: 25px;
             height: 25px;
+            color: var(--primary-blue);
         }
+
+        /* Set different colorful icons */
+        .icon-bday { color: var(--rainbow-7); } /* Pink */
+        .icon-gender { color: var(--rainbow-5); } /* Teal */
+        .icon-blood { color: var(--rainbow-1); } /* Red */
+        .icon-height { color: var(--rainbow-4); } /* Green */
+        .icon-home { color: var(--rainbow-2); } /* Orange */
 
         .info-text {
             display: flex;
@@ -206,7 +320,7 @@
         .highlight-red { color: #ef4444; font-weight: 600; }
         .highlight-blue { color: var(--primary-blue); font-weight: 600; }
 
-        /* Enhanced Sidebar List */
+        /* Sidebar List */
         .sidebar-list {
             list-style: none;
             display: grid;
@@ -239,7 +353,7 @@
             text-align: right;
         }
 
-        /* Skill Tag Style */
+        /* Tags container and colourful hover */
         .tags-container {
             display: flex;
             flex-wrap: wrap;
@@ -256,84 +370,95 @@
             font-weight: 500;
             border: 1px solid #bae6fd;
             box-shadow: 0 2px 4px rgba(3, 105, 161, 0.1);
-            transition: all 0.2s ease-in-out;
             cursor: default;
+            transition: all 0.2s ease-in-out;
         }
 
         .tag:hover {
-            box-shadow: 0 4px 6px rgba(3, 105, 161, 0.15);
+            box-shadow: 0 4px 10px rgba(3, 105, 161, 0.2);
             transform: translateY(-2px);
         }
 
-        .tag.hobby { background-color: #fce7f3; color: #be185d; border-color: #fbcfe8; }
-        .tag.sport { background-color: #dcfce7; color: #15803d; border-color: #bbf7d0; }
+        /* Extra colorful hover for skill tags */
+        .tag-skill:hover {
+            background-color: var(--dark-blue);
+            color: var(--white);
+            border-color: var(--dark-blue);
+        }
 
-        /* Print Media Query Optimization */
+        /* Specific tag color themes (as before but slightly accented) */
+        .tag.hobby { background-color: #fce7f3; color: #be185d; border-color: #fbcfe8; }
+        .tag.hobby:hover { background-color: #f9a8d4; }
+        
+        .tag.sport { background-color: #dcfce7; color: #15803d; border-color: #bbf7d0; }
+        .tag.sport:hover { background-color: #86efac; }
+
+        /* Print Media Query Optimization - MUST HIDE ANIMATIONS & BG */
         @media print {
-            body {
-                background-color: var(--white);
-                padding: 0;
-            }
-            .card-container {
-                box-shadow: none;
-                border: none;
-                max-width: 100%;
-                border-radius: 0;
-            }
+            body { background-color: var(--white); padding: 0; }
+            .card-container { box-shadow: none; border: none; max-width: 100%; border-radius: 0; }
+            .floating-blob { display: none !important; }
+            .header-mascot { display: none !important; }
+            .body-mascot-1 { display: none !important; }
+            .body-mascot-2 { display: none !important; }
+            .wavy-footer { display: none !important; }
             .header {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
                 border-bottom: 1px solid #e0f2fe;
             }
-            .profile-img {
-                border-color: var(--white);
-            }
+            .profile-img { border-color: var(--white); animation: none !important; }
             .tag, .motto-box, .nickname-badge, .info-card {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
             }
-            .info-card {
-                box-shadow: none;
-                border-color: #f1f5f9;
-            }
+            .info-card { box-shadow: none; border-color: #f1f5f9; }
+            .tag { box-shadow: none !important; }
         }
 
         /* Responsive adjustments for mobile */
         @media (max-width: 1024px) {
-            .body-content {
-                grid-template-columns: 1fr;
-                gap: 2.5rem;
-                padding: 3rem 2rem;
-            }
+            .body-content { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 2rem; }
         }
 
         @media (max-width: 768px) {
-            .header {
-                grid-template-columns: 1fr;
-                text-align: center;
-                padding: 3rem 1.5rem;
-                gap: 2rem;
-            }
-            .profile-img {
-                width: 140px;
-                height: 140px;
-            }
-            .nickname-badge {
-                align-self: center;
-            }
-            .name {
-                font-size: 2.2rem;
-            }
+            .header { grid-template-columns: 1fr; text-align: center; padding: 3rem 1.5rem; gap: 2rem; }
+            .profile-img { width: 140px; height: 140px; }
+            .nickname-badge { align-self: center; }
+            .name { font-size: 2.2rem; }
+            .header-mascot { width: 60px; height: 60px; transform: translate(5px, 5px); }
         }
     </style>
 </head>
 <body>
+    
+    <div class="floating-blob" style="width: 300px; height: 300px; background-color: var(--rainbow-5); left: -100px; top: -50px;"></div>
+    <div class="floating-blob" style="width: 200px; height: 200px; background-color: var(--rainbow-7); right: -50px; bottom: 100px; animation-delay: -5s;"></div>
+    <div class="floating-blob" style="width: 150px; height: 150px; background-color: var(--rainbow-3); left: 50%; bottom: -50px; animation-delay: -10s;"></div>
 
     <div class="card-container">
+        <div class="wavy-footer"></div>
+
         <header class="header">
             <div class="profile-img-container">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaONAg3jSlnQExURgpIKRrcM2ewsXxXJGdC5ZtEw2qBT9cs7f5J50YOqLm&s=10" alt="รูปโปรไฟล์ วรรณธรรม" class="profile-img">
             </div>
+            
+            <svg class="header-mascot" viewBox="0 0 100 100">
+              <defs>
+                <linearGradient id="gradientFeathers" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="var(--rainbow-1)" />
+                  <stop offset="14%" stop-color="var(--rainbow-2)" />
+                  <stop offset="28%" stop-color="var(--rainbow-3)" />
+                  <stop offset="42%" stop-color="var(--rainbow-4)" />
+                  <stop offset="57%" stop-color="var(--rainbow-5)" />
+                  <stop offset="71%" stop-color="var(--rainbow-6)" />
+                  <stop offset="85%" stop-color="var(--rainbow-7)" />
+                  <stop offset="100%" stop-color="var(--rainbow-1)" />
+                </linearGradient>
+              </defs>
+              <circle cx="50" cy="40" r="15" fill="#f8fafc" stroke="#e0f2fe" stroke-width="2"/> <circle cx="50" cy="70" r="25" fill="#f8fafc" stroke="#e0f2fe" stroke-width="2"/> <circle cx="45" cy="38" r="2" fill="#334155"/> <circle cx="55" cy="38" r="2" fill="#334155"/> <polygon points="50,42 47,48 53,48" fill="#f97316"/> <ellipse cx="25" cy="70" rx="10" ry="15" fill="url(#gradientFeathers)"/> <ellipse cx="75" cy="70" rx="10" ry="15" fill="url(#gradientFeathers)"/> </svg>
+
             <div class="header-text">
                 <span class="nickname-badge">ชื่อเล่น: กาแฟ</span>
                 <h1 class="name">ด.ญ.วรรณธรรม ธนธรรมธร</h1>
@@ -345,44 +470,46 @@
         </header>
 
         <main class="body-content">
+            <svg class="body-mascot-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg class="body-mascot-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             
             <div class="info-card personal-card">
                 <section>
                     <h2 class="section-title">
-                        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
                         ข้อมูลส่วนตัว
                     </h2>
                     <div class="info-grid">
                         <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            <svg class="info-icon icon-bday" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
                             <div class="info-text">
                                 <span class="info-label">วันเกิด</span>
                                 <span class="info-value">10 กรกฎาคม 2554</span>
                             </div>
                         </div>
                         <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg>
+                            <svg class="info-icon icon-gender" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><path d="M12 6v6l4 2"/></svg>
                             <div class="info-text">
                                 <span class="info-label">เพศ / ราศี</span>
                                 <span class="info-value">หญิง / กรกฎ</span>
                             </div>
                         </div>
                         <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 3 18 18"/><path d="M10 10 3.29 16.71a1 1 0 0 1-1.42 0L1 15"/><path d="M14 14 20.71 7.29a1 1 0 0 1 1.42 0L23 9"/><path d="M7 7 13.71.29a1 1 0 0 1 1.42 0L16 2"/><path d="M17 17 10.29 23.71a1 1 0 0 1-1.42 0L8 23"/></svg>
+                            <svg class="info-icon icon-blood" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16c0 1.6-1.4 3-3 3-1.6 0-3-1.4-3-3s1.4-3 3-3c1.6 0 3 1.4 3 3ZM12 16c0 1.6-1.4 3-3 3-1.6 0-3-1.4-3-3s1.4-3 3-3c1.6 0 3 1.4 3 3ZM12 8c0 1.6-1.4 3-3 3-1.6 0-3-1.4-3-3s1.4-3 3-3c1.6 0 3 1.4 3 3Z"/></svg>
                             <div class="info-text">
                                 <span class="info-label">กรุ๊ปเลือด</span>
                                 <span class="info-value">AB</span>
                             </div>
                         </div>
                         <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 11V7a4 4 0 0 0-8 0v4M5 11h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"/></svg>
+                            <svg class="info-icon icon-height" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 11V7a4 4 0 0 0-8 0v4M5 11h14a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2z"/></svg>
                             <div class="info-text">
                                 <span class="info-label">ส่วนสูง</span>
                                 <span class="info-value">159 ซม.</span>
                             </div>
                         </div>
                         <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                            <svg class="info-icon icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             <div class="info-text">
                                 <span class="info-label">ภูมิลำเนา</span>
                                 <span class="info-value">เชียงใหม่</span>
@@ -395,41 +522,41 @@
             <div class="info-card academic-card">
                 <section>
                     <h2 class="section-title">
-                        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
                         การเรียนและกิจกรรม
                     </h2>
                     <ul class="sidebar-list">
                         <li>
                             <div class="sidebar-list-label-container">
-                                <svg class="info-icon highlighting" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                                <svg class="info-icon highlight-green" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                                 <span class="sidebar-list-label">วิชาที่ชอบ</span>
                             </div>
                             <span class="sidebar-list-value highlight-green">ภาษาไทย</span>
                         </li>
                         <li>
                             <div class="sidebar-list-label-container">
-                                <svg class="info-icon highlighting" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                                <svg class="info-icon highlight-red" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                                 <span class="sidebar-list-label">วิชาที่ยาก</span>
                             </div>
                             <span class="sidebar-list-value highlight-red">ภาษาอังกฤษ</span>
                         </li>
                         <li>
                             <div class="sidebar-list-label-container">
-                                <svg class="info-icon highlighting" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.24 12.24a6 6 0 1 0-8.49 8.49"/><path d="M14.53 17a6.66 6.66 0 0 1-1.53-.17"/><path d="M2 17a6 6 0 0 1 8.49-8.49"/></svg>
+                                <svg class="info-icon highlight-blue" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.24 12.24a6 6 0 1 0-8.49 8.49"/><path d="M14.53 17a6.66 6.66 0 0 1-1.53-.17"/><path d="M2 17a6 6 0 0 1 8.49-8.49"/></svg>
                                 <span class="sidebar-list-label">อาชีพในฝัน</span>
                             </div>
                             <span class="sidebar-list-value highlight-blue">สถาปนิก</span>
                         </li>
                         <li>
                             <div class="sidebar-list-label-container">
-                                <svg class="info-icon highlights" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                                <svg class="info-icon" style="color: var(--rainbow-5);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
                                 <span class="sidebar-list-label">ชมรม</span>
                             </div>
                             <span class="sidebar-list-value">มหิงสา</span>
                         </li>
                         <li>
                             <div class="sidebar-list-label-container">
-                                <svg class="info-icon highlights" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                                <svg class="info-icon" style="color: var(--rainbow-6);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                                 <span class="sidebar-list-label">เพื่อนสนิท</span>
                             </div>
                             <span class="sidebar-list-value">ข้าวหอม</span>
@@ -441,13 +568,13 @@
             <div class="info-card skills-lifestyle-card">
                 <section>
                     <h2 class="section-title">
-                        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                        <svg class="info-icon" style="color: var(--rainbow-4);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
                         ทักษะความสามารถ
                     </h2>
                     <div class="tags-container">
-                        <span class="tag">วาดภาพ</span>
-                        <span class="tag">ถ่ายรูป</span>
-                        <span class="tag">ทำอาหาร</span>
+                        <span class="tag tag-skill">วาดภาพ</span>
+                        <span class="tag tag-skill">ถ่ายรูป</span>
+                        <span class="tag tag-skill">ทำอาหาร</span>
                     </div>
                     <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.8rem;">
                         <div>
@@ -467,19 +594,19 @@
 
                 <section style="margin-top: 2rem;">
                     <h2 class="section-title">
-                        <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m20.8 11-1.3-1.3A3.1 3.1 0 0 1 18.2 7a3.1 3.1 0 0 1 1.3-2.7L20.8 3a3.1 3.1 0 0 1 4.2 0 3.1 3.1 0 0 1 0 4.2L23.7 8.5A3.1 3.1 0 0 1 20.8 11Z"/><path d="m19 12-1.3 1.3A3.1 3.1 0 0 0 17 17a3.1 3.1 0 0 0-1.3 2.7L14.4 21"/><path d="m17 14-1.3-1.3A3.1 3.1 0 0 1 14.4 9a3.1 3.1 0 0 1-1.3-2.7L12.4 5"/><path d="m15 16-1.3 1.3A3.1 3.1 0 0 0 13 21a3.1 3.1 0 0 0-1.3 2.7L10.4 25"/></svg>
+                        <svg class="info-icon" style="color: var(--rainbow-2);" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                         ไลฟ์สไตล์
                     </h2>
                     <div style="display: grid; gap: 1rem;">
                         <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2Zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8Z"/><path d="M12 6v6l4 2"/></svg>
+                            <svg class="info-icon icon-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16c0 1.6-1.4 3-3 3-1.6 0-3-1.4-3-3s1.4-3 3-3c1.6 0 3 1.4 3 3ZM12 16c0 1.6-1.4 3-3 3-1.6 0-3-1.4-3-3s1.4-3 3-3c1.6 0 3 1.4 3 3Z"/></svg>
                             <div class="info-text">
                                 <span class="info-label">อาหารโปรด</span>
                                 <span class="info-value">ปีกไก่ทอด</span>
                             </div>
                         </div>
                         <div class="info-item">
-                            <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m20.8 11-1.3-1.3A3.1 3.1 0 0 1 18.2 7a3.1 3.1 0 0 1 1.3-2.7L20.8 3a3.1 3.1 0 0 1 4.2 0 3.1 3.1 0 0 1 0 4.2L23.7 8.5A3.1 3.1 0 0 1 20.8 11Z"/></svg>
+                            <svg class="info-icon icon-gender" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
                             <div class="info-text">
                                 <span class="info-label">สีโปรด</span>
                                 <span class="info-value">ครีม</span>
@@ -487,17 +614,18 @@
                         </div>
                         <div style="margin-top: 0.8rem;">
                             <span class="info-label">เพลงที่ชอบ</span>
-                            <p class="info-value" style="font-size: 0.95rem;">สิงคโปร์(feat.SIMON) - 2K, BABYBIGBOY</p>
+                            <p class="info-value highlight-blue" style="font-size: 0.95rem;">สิงคโปร์(feat.SIMON) - 2K, BABYBIGBOY</p>
                         </div>
                         <div style="margin-top: 0.8rem;">
                             <span class="info-label">ซีรีส์/อนิเมะ</span>
-                            <p class="info-value">wind Breaker</p>
+                            <p class="info-value" style="font-style: italic;">wind Breaker</p>
                         </div>
                     </div>
                 </section>
             </div>
-
         </main>
+        
+        <div class="wavy-footer"></div>
     </div>
 
 </body>
