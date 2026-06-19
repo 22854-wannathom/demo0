@@ -10,20 +10,15 @@
             --primary-blue: #0ea5e9;
             --dark-blue: #0369a1;
             --light-blue: #e0f2fe;
-            --bg-color: #f1f5f9;
+            --bg-color: #f8fafc;
             --text-dark: #334155;
             --text-light: #64748b;
             --white: #ffffff;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kanit', sans-serif; }
 
         body {
-            font-family: 'Kanit', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-dark);
             line-height: 1.6;
@@ -34,144 +29,87 @@
             padding: 2rem 1rem;
         }
 
-        /* ตั้งค่าขนาด Container ให้เหมาะสมกับ A4 */
         .card-container {
             background-color: var(--white);
             width: 100%;
-            max-width: 210mm; /* ความกว้างมาตรฐาน A4 */
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            max-width: 800px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(3, 105, 161, 0.1);
             overflow: hidden;
-            border: 1px solid #e2e8f0;
         }
 
-        /* Header (ส่วนหัว) */
         .header {
-            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
+            background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
             color: var(--white);
             padding: 2.5rem;
             position: relative;
         }
 
-        .header-content {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-        }
-
         .nickname-badge {
             background-color: rgba(255, 255, 255, 0.2);
-            padding: 0.25rem 1rem;
+            padding: 0.3rem 1rem;
             border-radius: 50px;
             font-size: 0.9rem;
-            align-self: flex-start;
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            display: inline-block;
+            margin-bottom: 0.5rem;
         }
 
-        .name {
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin: 0.5rem 0;
-        }
-
-        .school-info {
-            font-size: 1.1rem;
-            opacity: 0.9;
-        }
+        .name { font-size: 2.2rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .school-info { font-size: 1.1rem; opacity: 0.9; }
 
         .motto-box {
             margin-top: 1.5rem;
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.15);
             border-left: 4px solid var(--white);
-            padding: 1rem;
+            padding: 1rem 1.5rem;
             border-radius: 0 8px 8px 0;
             font-style: italic;
         }
 
-        /* Body (เนื้อหา) */
-        .body-content {
-            padding: 2.5rem;
-            display: grid;
-            gap: 2rem;
-        }
+        .body-content { padding: 2.5rem; display: grid; gap: 2rem; }
 
         .section-title {
             color: var(--dark-blue);
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 600;
             border-bottom: 2px solid var(--light-blue);
             padding-bottom: 0.5rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
+            margin-bottom: 1.2rem;
         }
 
         .info-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem 2rem;
+            gap: 1.2rem;
         }
 
-        .info-item {
-            display: flex;
-            flex-direction: column;
-        }
+        .info-item { display: flex; flex-direction: column; }
+        .info-label { color: var(--text-light); font-size: 0.9rem; font-weight: 500; }
+        .info-value { font-size: 1rem; font-weight: 500; color: var(--text-dark); }
 
-        .info-label {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
+        .highlight-green { color: #10b981; font-weight: 600; }
+        .highlight-red { color: #ef4444; font-weight: 600; }
+        .highlight-blue { color: var(--primary-blue); font-weight: 600; }
 
-        .info-value {
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--text-dark);
-        }
-
-        /* Pill / Tag สำหรับทักษะ */
-        .tags-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 0.5rem;
-        }
-
+        .tags-container { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.3rem; }
         .tag {
             background-color: var(--light-blue);
             color: var(--dark-blue);
-            padding: 0.4rem 1rem;
+            padding: 0.3rem 1rem;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 500;
             border: 1px solid #bae6fd;
         }
-
         .tag.hobby { background-color: #fce7f3; color: #be185d; border-color: #fbcfe8; }
         .tag.sport { background-color: #dcfce7; color: #15803d; border-color: #bbf7d0; }
 
-        /* การตั้งค่าสำหรับการพิมพ์ (A4 Print-ready) */
         @media print {
-            body {
-                background-color: var(--white);
-                padding: 0;
-            }
-            .card-container {
-                box-shadow: none;
-                border: none;
-                max-width: 100%;
-                border-radius: 0;
-            }
-            .header {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-            .tag, .motto-box, .nickname-badge {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
+            body { background-color: var(--white); padding: 0; }
+            .card-container { box-shadow: none; border: none; max-width: 100%; border-radius: 0; }
+            .header, .tag, .nickname-badge, .motto-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
         }
     </style>
 </head>
@@ -179,189 +117,71 @@
 
     <div class="card-container">
         <header class="header">
-            <div class="header-content">
-                <span class="nickname-badge">ชื่อเล่น: กาแฟ</span>
-                <h1 class="name">ด.ญ.วรรณธรรม ธนธรรมธร</h1>
-                <p class="school-info">โรงเรียนจอมทอง | ระดับชั้น ม.3/2</p>
-                <div class="motto-box">
-                    "เป็นตัวเองในเวอร์ชั่นที่ดีที่สุด"
-                </div>
+            <span class="nickname-badge">ชื่อเล่น: กาแฟ</span>
+            <h1 class="name">ด.ญ.วรรณธรรม ธนธรรมธร</h1>
+            <p class="school-info">โรงเรียนจอมทอง | ระดับชั้น ม.3/2</p>
+            <div class="motto-box">
+                <strong>คติประจำใจ:</strong> "เป็นตัวเองในเวอร์ชั่นที่ดีที่สุด"
             </div>
         </header>
 
         <main class="body-content">
-            
             <section>
-                <h2 class="section-title">ข้อมูลส่วนตัว</h2>
+                <h2 class="section-title">ข้อมูลส่วนตัว (General Info)</h2>
                 <div class="info-grid">
-                    <div class="info-item">
-                        <span class="info-label">วันเกิด</span>
-                        <span class="info-value">10 กรกฎาคม 2554</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">เพศ</span>
-                        <span class="info-value">หญิง</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">กรุ๊ปเลือด</span>
-                        <span class="info-value">AB</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">ราศี</span>
-                        <span class="info-value">กรกฎ</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">ส่วนสูง</span>
-                        <span class="info-value">159 ซม.</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">ภูมิลำเนา</span>
-                        <span class="info-value">เชียงใหม่</span>
-                    </div>
+                    <div class="info-item"><span class="info-label">วันเกิด</span><span class="info-value">10 กรกฎาคม 2554</span></div>
+                    <div class="info-item"><span class="info-label">เพศ</span><span class="info-value">หญิง</span></div>
+                    <div class="info-item"><span class="info-label">กรุ๊ปเลือด</span><span class="info-value">AB</span></div>
+                    <div class="info-item"><span class="info-label">ราศี</span><span class="info-value">กรกฎ</span></div>
+                    <div class="info-item"><span class="info-label">ส่วนสูง</span><span class="info-value">159 ซม.</span></div>
+                    <div class="info-item"><span class="info-label">ภูมิลำเนา</span><span class="info-value">เชียงใหม่</span></div>
                 </div>
             </section>
 
             <section>
-                <h2 class="section-title">การเรียนและกิจกรรม</h2>
+                <h2 class="section-title">การเรียนและกิจกรรม (Academic & Activities)</h2>
                 <div class="info-grid">
-                    <div class="info-item">
-                        <span class="info-label">วิชาที่ชอบ</span>
-                        <span class="info-value" style="color: #10b981;">ภาษาไทย</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">วิชาที่ยาก</span>
-                        <span class="info-value" style="color: #ef4444;">ภาษาอังกฤษ</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">ความฝัน/อาชีพ</span>
-                        <span class="info-value" style="color: var(--primary-blue); font-weight: 600;">สถาปนิก</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">ชมรม/กิจกรรม</span>
-                        <span class="info-value">มหิงสา</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">เพื่อนสนิท</span>
-                        <span class="info-value">ข้าวหอม</span>
-                    </div>
+                    <div class="info-item"><span class="info-label">วิชาที่ชอบ</span><span class="info-value highlight-green">ภาษาไทย</span></div>
+                    <div class="info-item"><span class="info-label">วิชาที่ยาก</span><span class="info-value highlight-red">ภาษาอังกฤษ</span></div>
+                    <div class="info-item"><span class="info-label">ความฝัน/อาชีพ</span><span class="info-value highlight-blue">สถาปนิก</span></div>
+                    <div class="info-item"><span class="info-label">ชมรม/กิจกรรม</span><span class="info-value">มหิงสา</span></div>
+                    <div class="info-item"><span class="info-label">เพื่อนสนิท</span><span class="info-value">ข้าวหอม</span></div>
                 </div>
             </section>
 
             <section>
-                <h2 class="section-title">ความชอบและไลฟ์สไตล์</h2>
+                <h2 class="section-title">ความชอบและไลฟ์สไตล์ (Lifestyle)</h2>
                 <div class="info-grid">
-                    <div class="info-item">
-                        <span class="info-label">อาหารโปรด</span>
-                        <span class="info-value">ปีกไก่ทอด</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">สีโปรด</span>
-                        <span class="info-value">ครีม</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">ซีรีส์/อนิเมะ</span>
-                        <span class="info-value">wind Breaker</span>
-                    </div>
-                    <div class="info-item" style="grid-column: 1 / -1;">
-                        <span class="info-label">เพลงที่ชอบ</span>
-                        <span class="info-value">สิงคโปร์(feat.SIMON) - 2K,BABYBIGBOY</span>
-                    </div>
+                    <div class="info-item"><span class="info-label">อาหารโปรด</span><span class="info-value">ปีกไก่ทอด</span></div>
+                    <div class="info-item"><span class="info-label">สีโปรด</span><span class="info-value">ครีม</span></div>
+                    <div class="info-item"><span class="info-label">ซีรีส์/อนิเมะ</span><span class="info-value">wind Breaker</span></div>
+                    <div class="info-item" style="grid-column: 1 / -1;"><span class="info-label">เพลงที่ชอบ</span><span class="info-value">สิงคโปร์(feat.SIMON) - 2K,BABYBIGBOY</span></div>
                 </div>
             </section>
 
             <section>
-                <h2 class="section-title">ทักษะและความสนใจ</h2>
-                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                <h2 class="section-title">ทักษะและความสนใจ (Skills & Interests)</h2>
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
                     <div>
-                        <span class="info-label">ทักษะความสามารถ</span>
+                        <span class="info-label">ทักษะความสามารถ:</span>
                         <div class="tags-container">
-                            <span class="tag">วาดภาพ</span>
-                            <span class="tag">ถ่ายรูป</span>
-                            <span class="tag">ทำอาหาร</span>
+                            <span class="tag">วาดภาพ</span><span class="tag">ถ่ายรูป</span><span class="tag">ทำอาหาร</span>
                         </div>
                     </div>
                     <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
                         <div>
-                            <span class="info-label">งานอดิเรก</span>
-                            <div class="tags-container">
-                                <span class="tag hobby">วาดรูป</span>
-                            </div>
+                            <span class="info-label">งานอดิเรก:</span>
+                            <div class="tags-container"><span class="tag hobby">วาดรูป</span></div>
                         </div>
                         <div>
-                            <span class="info-label">กีฬา</span>
-                            <div class="tags-container">
-                                <span class="tag sport">แบดมินตัน</span>
-                            </div>
+                            <span class="info-label">กีฬา:</span>
+                            <div class="tags-container"><span class="tag sport">แบดมินตัน</span></div>
                         </div>
                     </div>
                 </div>
             </section>
-
         </main>
     </div>
 
 </body>
 </html>
-# Student Profile
-
-<div style="font-family: 'Kanit', sans-serif; background-color: #e0f2fe; border: 1px solid #7dd3fc; border-radius: 12px; max-width: 650px; margin: 10px auto; padding: 20px; box-shadow: 2px 2px 8px rgba(0,0,0,0.1); color: #334155;">
-
-  <div style="background-color: #0369a1; color: white; padding: 15px; border-radius: 8px 8px 0 0; text-align: center; margin-bottom: 20px;">
-    <h2 style="margin: 0; font-size: 24px; color: white;">ด.ญ.วรรณธรรม ธนธรรมธร (กาแฟ)</h2>
-    <p style="margin: 5px 0 0 0; font-size: 16px; color: #e0f2fe;">โรงเรียนจอมทอง | ม.3/2</p>
-  </div>
-
-  <div style="border-left: 4px solid #0ea5e9; background-color: #f0f9ff; padding: 10px; border-radius: 4px; margin-bottom: 20px; font-style: italic;">
-    <strong>คติประจำใจ:</strong> "[เป็นตัวเองในเวอร์ชั่นที่ดีที่สุด]"
-  </div>
-
-  <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; color: #334155; font-size: 14px;">
-    <tr>
-      <td colspan="2" style="padding: 5px; font-weight: bold; color: #0369a1; border-bottom: 2px solid #bae6fd;">ข้อมูลทั่วไป</td>
-    </tr>
-    <tr>
-      <td style="width: 30%; padding: 8px 5px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">วันเกิด</td>
-      <td style="padding: 8px 5px; border-bottom: 1px solid #f1f5f9;">10 กรกฎาคม 2554 (หญิง)</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 5px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">เลือด / ราศี</td>
-      <td style="padding: 8px 5px; border-bottom: 1px solid #f1f5f9;">AB / กรกฎ</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 5px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">ภูมิลำเนา / ส่วนสูง</td>
-      <td style="padding: 8px 5px; border-bottom: 1px solid #f1f5f9;">เชียงใหม่ / 159 ซม.</td>
-    </tr>
-  </table>
-
-  <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px; color: #334155; font-size: 14px;">
-    <tr>
-      <td colspan="2" style="padding: 5px; font-weight: bold; color: #0369a1; border-bottom: 2px solid #bae6fd;">การเรียนและกิจกรรม</td>
-    </tr>
-    <tr>
-      <td style="width: 30%; padding: 8px 5px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">วิชาที่ชอบ / ยาก</td>
-      <td style="padding: 8px 5px; border-bottom: 1px solid #f1f5f9; color: green;">ภาษาไทย <span style="color: red;">(ภาษาอังกฤษ)</span></td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 5px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">เพื่อนสนิท / ชมรม</td>
-      <td style="padding: 8px 5px; border-bottom: 1px solid #f1f5f9;">ข้าวหอม / มหิงสา</td>
-    </tr>
-    <tr>
-      <td style="padding: 8px 5px; font-weight: bold; border-bottom: 1px solid #f1f5f9;">ความฝัน / อาชีพ</td>
-      <td style="padding: 8px 5px; border-bottom: 1px solid #f1f5f9; font-weight: bold; color: #0284c7;">สถาปนิก</td>
-    </tr>
-  </table>
-
-  <div style="margin-bottom: 20px;">
-    <h4 style="margin: 0 0 10px 0; color: #0369a1; font-size: 16px;">ทักษะความสามารถ:</h4>
-    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
-      <span style="background-color: #0ea5e9; color: white; padding: 4px 10px; border-radius: 50px; font-size: 12px; font-weight: bold;">วาดภาพ</span>
-      <span style="background-color: #0ea5e9; color: white; padding: 4px 10px; border-radius: 50px; font-size: 12px; font-weight: bold;">ถ่ายรูป</span>
-      <span style="background-color: #0ea5e9; color: white; padding: 4px 10px; border-radius: 50px; font-size: 12px; font-weight: bold;">ทำอาหาร</span>
-    </div>
-  </div>
-
-  <div style="margin-bottom: 10px; font-size: 14px;">
-    <strong>ไลฟ์สไตล์:</strong> อาหารโปรด: ปีกไก่ทอด, สีโปรด: ครีม, งานอดิเรก: วาดรูป, กีฬา: แบดมินตัน, เพลง: สิงคโปร์(feat.SIMON) - 2K,BABYBIGBOY, ซีรีส์: wind Breaker
-  </div>
-
-</div>
