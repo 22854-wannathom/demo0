@@ -10,15 +10,21 @@
             --primary-blue: #0ea5e9;
             --dark-blue: #0369a1;
             --light-blue: #e0f2fe;
-            --bg-color: #f8fafc;
+            --bg-color: #f1f5f9;
             --text-dark: #334155;
             --text-light: #64748b;
             --white: #ffffff;
+            --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Kanit', sans-serif; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
         body {
+            font-family: 'Kanit', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-dark);
             line-height: 1.6;
@@ -29,87 +35,228 @@
             padding: 2rem 1rem;
         }
 
+        /* Container designed to fit on standard screen and optimized for A4 print */
         .card-container {
             background-color: var(--white);
             width: 100%;
-            max-width: 800px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(3, 105, 161, 0.1);
+            max-width: 210mm; /* A4 Width */
+            border-radius: 16px;
+            box-shadow: var(--shadow);
             overflow: hidden;
+            border: 1px solid #e2e8f0;
         }
 
+        /* Header with Profile Image */
         .header {
-            background: linear-gradient(135deg, #0369a1 0%, #0ea5e9 100%);
+            background: linear-gradient(135deg, var(--dark-blue), var(--primary-blue));
             color: var(--white);
-            padding: 2.5rem;
+            padding: 3rem 2.5rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
             position: relative;
+        }
+
+        .profile-img-container {
+            flex-shrink: 0;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--white);
+            box-shadow: var(--shadow);
+        }
+
+        .header-text {
+            display: flex;
+            flex-direction: column;
+            gap: 0.2rem;
         }
 
         .nickname-badge {
             background-color: rgba(255, 255, 255, 0.2);
-            padding: 0.3rem 1rem;
+            padding: 0.3rem 1.2rem;
             border-radius: 50px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
+            align-self: flex-start;
             backdrop-filter: blur(4px);
             border: 1px solid rgba(255, 255, 255, 0.3);
-            display: inline-block;
             margin-bottom: 0.5rem;
         }
 
-        .name { font-size: 2.2rem; font-weight: 600; margin-bottom: 0.2rem; }
-        .school-info { font-size: 1.1rem; opacity: 0.9; }
+        .name {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin: 0.3rem 0;
+            letter-spacing: -0.5px;
+        }
 
+        .school-info {
+            font-size: 1.15rem;
+            opacity: 0.95;
+        }
+
+        /* Motto Section */
         .motto-box {
             margin-top: 1.5rem;
-            background-color: rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.1);
             border-left: 4px solid var(--white);
             padding: 1rem 1.5rem;
             border-radius: 0 8px 8px 0;
             font-style: italic;
+            font-weight: 300;
         }
 
-        .body-content { padding: 2.5rem; display: grid; gap: 2rem; }
+        /* Body Content */
+        .body-content {
+            padding: 3rem 2.5rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr; /* Split into main info and sidebar */
+            gap: 2.5rem;
+        }
+
+        .main-info {
+            display: grid;
+            gap: 2.5rem;
+        }
+
+        .sidebar {
+            display: grid;
+            gap: 2.5rem;
+            align-content: start;
+        }
 
         .section-title {
             color: var(--dark-blue);
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             font-weight: 600;
             border-bottom: 2px solid var(--light-blue);
-            padding-bottom: 0.5rem;
+            padding-bottom: 0.6rem;
             margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
         }
 
+        /* Standard Info Grid */
         .info-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 1.2rem;
         }
 
-        .info-item { display: flex; flex-direction: column; }
-        .info-label { color: var(--text-light); font-size: 0.9rem; font-weight: 500; }
-        .info-value { font-size: 1rem; font-weight: 500; color: var(--text-dark); }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
 
+        .info-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .info-value {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        /* Colored Value Highlights */
         .highlight-green { color: #10b981; font-weight: 600; }
         .highlight-red { color: #ef4444; font-weight: 600; }
         .highlight-blue { color: var(--primary-blue); font-weight: 600; }
 
-        .tags-container { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.3rem; }
+        /* Sidebar Item List */
+        .sidebar-list {
+            list-style: none;
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .sidebar-list li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .sidebar-list-label {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        .sidebar-list-value {
+            font-weight: 500;
+            color: var(--text-dark);
+            text-align: right;
+        }
+
+        /* Pill / Tag for Skills */
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.6rem;
+            margin-top: 0.5rem;
+        }
+
         .tag {
             background-color: var(--light-blue);
             color: var(--dark-blue);
-            padding: 0.3rem 1rem;
+            padding: 0.4rem 1.2rem;
             border-radius: 50px;
             font-size: 0.9rem;
             font-weight: 500;
             border: 1px solid #bae6fd;
+            transition: all 0.2s ease;
         }
+
         .tag.hobby { background-color: #fce7f3; color: #be185d; border-color: #fbcfe8; }
         .tag.sport { background-color: #dcfce7; color: #15803d; border-color: #bbf7d0; }
 
+        /* Print Media Query Optimization */
         @media print {
-            body { background-color: var(--white); padding: 0; }
-            .card-container { box-shadow: none; border: none; max-width: 100%; border-radius: 0; }
-            .header, .tag, .nickname-badge, .motto-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            body {
+                background-color: var(--white);
+                padding: 0;
+            }
+            .card-container {
+                box-shadow: none;
+                border: none;
+                max-width: 100%;
+                border-radius: 0;
+            }
+            .header {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .profile-img {
+                border-color: var(--white);
+            }
+            .tag, .motto-box, .nickname-badge {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+                padding: 2rem 1.5rem;
+            }
+            .nickname-badge {
+                align-self: center;
+            }
+            .body-content {
+                grid-template-columns: 1fr;
+                padding: 2rem 1.5rem;
+            }
         }
     </style>
 </head>
@@ -117,69 +264,123 @@
 
     <div class="card-container">
         <header class="header">
-            <span class="nickname-badge">ชื่อเล่น: กาแฟ</span>
-            <h1 class="name">ด.ญ.วรรณธรรม ธนธรรมธร</h1>
-            <p class="school-info">โรงเรียนจอมทอง | ระดับชั้น ม.3/2</p>
-            <div class="motto-box">
-                <strong>คติประจำใจ:</strong> "เป็นตัวเองในเวอร์ชั่นที่ดีที่สุด"
+            <div class="profile-img-container">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQaONAg3jSlnQExURgpIKRrcM2ewsXxXJGdC5ZtEw2qBT9cs7f5J50YOqLm&s=10" alt="รูปโปรไฟล์ วรรณธรรม" class="profile-img">
+            </div>
+            <div class="header-text">
+                <span class="nickname-badge">ชื่อเล่น: กาแฟ</span>
+                <h1 class="name">ด.ญ.วรรณธรรม ธนธรรมธร</h1>
+                <p class="school-info">โรงเรียนจอมทอง | ระดับชั้น ม.3/2</p>
+                <div class="motto-box">
+                    <strong>คติประจำใจ:</strong> "เป็นตัวเองในเวอร์ชั่นที่ดีที่สุด"
+                </div>
             </div>
         </header>
 
         <main class="body-content">
-            <section>
-                <h2 class="section-title">ข้อมูลส่วนตัว (General Info)</h2>
-                <div class="info-grid">
-                    <div class="info-item"><span class="info-label">วันเกิด</span><span class="info-value">10 กรกฎาคม 2554</span></div>
-                    <div class="info-item"><span class="info-label">เพศ</span><span class="info-value">หญิง</span></div>
-                    <div class="info-item"><span class="info-label">กรุ๊ปเลือด</span><span class="info-value">AB</span></div>
-                    <div class="info-item"><span class="info-label">ราศี</span><span class="info-value">กรกฎ</span></div>
-                    <div class="info-item"><span class="info-label">ส่วนสูง</span><span class="info-value">159 ซม.</span></div>
-                    <div class="info-item"><span class="info-label">ภูมิลำเนา</span><span class="info-value">เชียงใหม่</span></div>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title">การเรียนและกิจกรรม (Academic & Activities)</h2>
-                <div class="info-grid">
-                    <div class="info-item"><span class="info-label">วิชาที่ชอบ</span><span class="info-value highlight-green">ภาษาไทย</span></div>
-                    <div class="info-item"><span class="info-label">วิชาที่ยาก</span><span class="info-value highlight-red">ภาษาอังกฤษ</span></div>
-                    <div class="info-item"><span class="info-label">ความฝัน/อาชีพ</span><span class="info-value highlight-blue">สถาปนิก</span></div>
-                    <div class="info-item"><span class="info-label">ชมรม/กิจกรรม</span><span class="info-value">มหิงสา</span></div>
-                    <div class="info-item"><span class="info-label">เพื่อนสนิท</span><span class="info-value">ข้าวหอม</span></div>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title">ความชอบและไลฟ์สไตล์ (Lifestyle)</h2>
-                <div class="info-grid">
-                    <div class="info-item"><span class="info-label">อาหารโปรด</span><span class="info-value">ปีกไก่ทอด</span></div>
-                    <div class="info-item"><span class="info-label">สีโปรด</span><span class="info-value">ครีม</span></div>
-                    <div class="info-item"><span class="info-label">ซีรีส์/อนิเมะ</span><span class="info-value">wind Breaker</span></div>
-                    <div class="info-item" style="grid-column: 1 / -1;"><span class="info-label">เพลงที่ชอบ</span><span class="info-value">สิงคโปร์(feat.SIMON) - 2K,BABYBIGBOY</span></div>
-                </div>
-            </section>
-
-            <section>
-                <h2 class="section-title">ทักษะและความสนใจ (Skills & Interests)</h2>
-                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-                    <div>
-                        <span class="info-label">ทักษะความสามารถ:</span>
-                        <div class="tags-container">
-                            <span class="tag">วาดภาพ</span><span class="tag">ถ่ายรูป</span><span class="tag">ทำอาหาร</span>
+            
+            <div class="main-info">
+                <section>
+                    <h2 class="section-title">ข้อมูลส่วนตัว (General Info)</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">วันเกิด</span>
+                            <span class="info-value">10 กรกฎาคม 2554</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">เพศ / กรุ๊ปเลือด</span>
+                            <span class="info-value">หญิง / AB</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">ราศี</span>
+                            <span class="info-value">กรกฎ</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">ส่วนสูง</span>
+                            <span class="info-value">159 ซม.</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">ภูมิลำเนา</span>
+                            <span class="info-value">เชียงใหม่</span>
                         </div>
                     </div>
-                    <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                </section>
+
+                <section>
+                    <h2 class="section-title">ทักษะและความสนใจ (Skills & Interests)</h2>
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
                         <div>
-                            <span class="info-label">งานอดิเรก:</span>
-                            <div class="tags-container"><span class="tag hobby">วาดรูป</span></div>
+                            <span class="info-label">ทักษะความสามารถ</span>
+                            <div class="tags-container">
+                                <span class="tag">วาดภาพ</span>
+                                <span class="tag">ถ่ายรูป</span>
+                                <span class="tag">ทำอาหาร</span>
+                            </div>
                         </div>
-                        <div>
-                            <span class="info-label">กีฬา:</span>
-                            <div class="tags-container"><span class="tag sport">แบดมินตัน</span></div>
+                        <div style="display: flex; gap: 2rem; flex-wrap: wrap;">
+                            <div>
+                                <span class="info-label">งานอดิเรก</span>
+                                <div class="tags-container">
+                                    <span class="tag hobby">วาดรูป</span>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="info-label">กีฬา</span>
+                                <div class="tags-container">
+                                    <span class="tag sport">แบดมินตัน</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </section>
+            </div>
+
+            <aside class="sidebar">
+                <section>
+                    <h2 class="section-title">การเรียน</h2>
+                    <ul class="sidebar-list">
+                        <li>
+                            <span class="sidebar-list-label">วิชาที่ชอบ</span>
+                            <span class="sidebar-list-value highlight-green">ภาษาไทย</span>
+                        </li>
+                        <li>
+                            <span class="sidebar-list-label">วิชาที่ยาก</span>
+                            <span class="sidebar-list-value highlight-red">ภาษาอังกฤษ</span>
+                        </li>
+                        <li>
+                            <span class="sidebar-list-label">อาชีพในฝัน</span>
+                            <span class="sidebar-list-value highlight-blue">สถาปนิก</span>
+                        </li>
+                        <li>
+                            <span class="sidebar-list-label">ชมรม</span>
+                            <span class="sidebar-list-value">มหิงสา</span>
+                        </li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="section-title">ไลฟ์สไตล์</h2>
+                    <ul class="sidebar-list">
+                        <li>
+                            <span class="sidebar-list-label">อาหารโปรด</span>
+                            <span class="sidebar-list-value">ปีกไก่ทอด</span>
+                        </li>
+                        <li>
+                            <span class="sidebar-list-label">สีโปรด</span>
+                            <span class="sidebar-list-value">ครีม</span>
+                        </li>
+                    </ul>
+                    <div style="margin-top: 1rem;">
+                        <span class="info-label">ซีรีส์/อนิเมะ</span>
+                        <p class="info-value">wind Breaker</p>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <span class="info-label">เพลงที่ชอบ</span>
+                        <p class="info-value" style="font-size: 0.95rem;">สิงคโปร์(feat.SIMON) - 2K, BABYBIGBOY</p>
+                    </div>
+                </aside>
             </section>
+
         </main>
     </div>
 
