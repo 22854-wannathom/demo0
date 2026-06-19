@@ -1,4 +1,4 @@
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -7,6 +7,7 @@ html_content = """<!DOCTYPE html>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;500;600;700&display=swap');
 
+        /* รีเซ็ตค่าเริ่มต้น */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -15,8 +16,8 @@ html_content = """<!DOCTYPE html>
         }
 
         body {
-            background-color: #f0f4f8;
-            color: #334155;
+            background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 100%);
+            color: #1e293b;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -24,59 +25,75 @@ html_content = """<!DOCTYPE html>
             padding: 40px 20px;
         }
 
-        /* Container designed to fit nicely on standard screen and optimized for A4 print */
+        /* กล่องการ์ดประวัติส่วนตัว */
         .profile-card {
             background: #ffffff;
             width: 100%;
             max-width: 800px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px rgba(15, 23, 42, 0.08);
             overflow: hidden;
-            border: 1px solid #e2e8f0;
-            position: relative;
+            border: 1px solid rgba(226, 232, 240, 0.8);
         }
 
-        /* Header Accent (Blue Theme) */
+        /* ส่วนหัวของการ์ด (โทนสีฟ้าพรีเมียม) */
         .card-header {
             background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
             color: #ffffff;
-            padding: 40px;
+            padding: 45px;
             position: relative;
+        }
+
+        /* ลายวงกลมตกแต่งพื้นหลังส่วนหัว */
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 180px;
+            height: 180px;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 50%;
+            pointer-events: none;
         }
 
         .header-main {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            gap: 24px;
+            gap: 30px;
         }
 
         .student-info {
             flex: 1;
         }
 
-        .student-info h1 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 8px;
+        .student-info .nickname {
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.18);
+            padding: 4px 16px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 12px;
+            font-weight: 600;
             letter-spacing: 0.5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(4px);
         }
 
-        .student-info .nickname {
-            font-size: 16px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 4px 14px;
-            border-radius: 20px;
-            display: inline-block;
-            margin-bottom: 14px;
-            font-weight: 500;
-            backdrop-filter: blur(5px);
+        .student-info h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
         }
 
         .school-info {
             font-size: 16px;
             opacity: 0.95;
-            line-height: 1.6;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .school-info .highlight {
@@ -84,28 +101,28 @@ html_content = """<!DOCTYPE html>
             color: #e0f2fe;
         }
 
-        /* Profile Image Styling */
+        /* ส่วนจัดวางรูปโปรไฟล์ */
         .profile-img-container {
             flex-shrink: 0;
         }
 
         .profile-img {
-            width: 120px;
-            height: 120px;
+            width: 130px;
+            height: 130px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border: 4px solid rgba(255, 255, 255, 0.35);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
             display: block;
         }
 
-        /* Quote Section inside Header */
+        /* กล่องคติประจำใจ */
         .motto-box {
             margin-top: 25px;
             background: rgba(255, 255, 255, 0.08);
-            border-left: 4px solid #bae6fd;
-            padding: 12px 18px;
-            border-radius: 0 10px 10px 0;
+            border-left: 4px solid #38bdf8;
+            padding: 12px 20px;
+            border-radius: 4px 12px 12px 4px;
         }
 
         .motto-box p {
@@ -114,70 +131,91 @@ html_content = """<!DOCTYPE html>
             color: #f0f9ff;
         }
 
-        /* Main Content Grid */
+        /* เนื้อหาภายในของการ์ด */
         .card-body {
-            padding: 10px 40px 40px 40px;
+            padding: 20px 45px 45px 45px;
         }
 
+        /* หัวข้อหลักของแต่ละส่วน */
         .section-title {
             font-size: 16px;
             font-weight: 700;
             color: #0369a1;
-            margin: 30px 0 14px 0;
+            margin: 35px 0 16px 0;
             padding-bottom: 8px;
             border-bottom: 2px solid #e0f2fe;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        /* Info Grid Layout */
+        /* ไอคอนขีดหน้าหัวข้อหลัก */
+        .section-title::before {
+            content: '';
+            display: inline-block;
+            width: 5px;
+            height: 16px;
+            background-color: #0284c7;
+            border-radius: 4px;
+        }
+
+        /* ตารางกรุกข้อมูลแบบ 2 คอลัมน์ */
         .info-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px 32px;
+            gap: 12px 40px;
+        }
+
+        /* ตารางกรุกข้อมูลแบบ 3 คอลัมน์ */
+        .info-grid-three {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px 24px;
         }
 
         .info-row {
             display: flex;
-            border-bottom: 1px dashed #f1f5f9;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px dashed #e2e8f0;
             padding: 8px 0;
             font-size: 14px;
-            align-items: center;
         }
 
         .info-label {
             font-weight: 600;
             color: #64748b;
-            width: 120px;
             flex-shrink: 0;
         }
 
         .info-value {
-            color: #1e293b;
+            color: #334155;
+            text-align: right;
         }
 
-        /* Three column grid for specific sections */
-        .info-grid-three {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px 20px;
-        }
-
-        /* Skills/Tags Layout */
+        /* ส่วนของแท็กทักษะและความสนใจ */
         .tags-container {
             display: flex;
             flex-wrap: wrap;
             gap: 8px;
-            margin-top: 8px;
+            margin-top: 10px;
         }
 
         .tag-pill {
-            background-color: #e0f2fe;
+            background-color: #f0f9ff;
             color: #0369a1;
-            padding: 6px 14px;
-            border-radius: 20px;
+            padding: 6px 16px;
+            border-radius: 50px;
             font-size: 13px;
             font-weight: 500;
             border: 1px solid #bae6fd;
             transition: all 0.2s ease;
+        }
+
+        .tag-pill:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
+            background-color: #e0f2fe;
         }
         
         .tag-pill.hobby {
@@ -185,25 +223,37 @@ html_content = """<!DOCTYPE html>
             color: #166534;
             border-color: #bbf7d0;
         }
+        .tag-pill.hobby:hover {
+            background-color: #dcfce7;
+        }
 
         .tag-pill.sport {
             background-color: #faf5ff;
             color: #6b21a8;
             border-color: #e9d5ff;
         }
+        .tag-pill.sport:hover {
+            background-color: #f3e8ff;
+        }
 
-        /* Print Media Query Optimization for A4 */
+        .sub-title {
+            font-size: 13px;
+            color: #475569;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        /* 🖨️ รองรับการจัดหน้าพิมพ์บนกระดาษ A4 */
         @media print {
             body {
-                background-color: #ffffff;
+                background: #ffffff !important;
                 padding: 0;
                 margin: 0;
             }
             .profile-card {
-                box-shadow: none;
-                border: none;
+                box-shadow: none !important;
+                border: none !important;
                 max-width: 100%;
-                border-radius: 0;
             }
             .card-header {
                 -webkit-print-color-adjust: exact;
@@ -211,43 +261,41 @@ html_content = """<!DOCTYPE html>
                 background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
                 color: #ffffff !important;
             }
-            .profile-img {
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-                border-color: #ffffff !important;
-            }
             .tag-pill {
                 -webkit-print-color-adjust: exact;
                 print-color-adjust: exact;
-            }
-            .section-title {
-                border-bottom-color: #0369a1 !important;
+                background: #f1f5f9 !important;
+                border: 1px solid #cbd5e1 !important;
+                color: #1e293b !important;
             }
         }
 
-        /* Responsive design for Mobile */
+        /* 📱 รองรับการแสดงผลบนหน้าจอมือถือ */
         @media (max-width: 640px) {
+            body {
+                padding: 16px;
+            }
             .header-main {
                 flex-direction: column-reverse;
                 text-align: center;
-                gap: 16px;
+                gap: 20px;
             }
             .profile-img {
-                width: 100px;
-                height: 100px;
+                width: 110px;
+                height: 110px;
             }
             .info-grid, .info-grid-three {
                 grid-template-columns: 1fr;
                 gap: 0;
             }
-            .card-body {
-                padding: 10px 24px 30px 24px;
-            }
-            .card-header {
-                padding: 30px 24px;
-            }
             .info-row {
                 padding: 10px 0;
+            }
+            .card-body {
+                padding: 15px 25px 35px 25px;
+            }
+            .card-header {
+                padding: 35px 25px;
             }
         }
     </style>
@@ -255,13 +303,16 @@ html_content = """<!DOCTYPE html>
 <body>
 
     <div class="profile-card">
+        
         <div class="card-header">
             <div class="header-main">
                 <div class="student-info">
                     <span class="nickname">ชื่อเล่น: กาแฟ</span>
                     <h1>ด.ญ.วรรณธรรม ธนธรรมธร</h1>
                     <div class="school-info">
-                        โรงเรียน<span class="highlight">จอมทอง</span> &nbsp;|&nbsp; ระดับชั้น <span class="highlight">ม.3/2</span>
+                        <span>โรงเรียน<span class="highlight">จอมทอง</span></span>
+                        <span>|</span>
+                        <span>ระดับชั้น <span class="highlight">ม.3/2</span></span>
                     </div>
                 </div>
                 <div class="profile-img-container">
@@ -315,18 +366,18 @@ html_content = """<!DOCTYPE html>
                     <div class="info-value" style="color: #e11d48; font-weight: 600;">ภาษาอังกฤษ</div>
                 </div>
                 <div class="info-row">
-                    <div class="info-label">ชมรม/กิจกรรม</div>
+                    <div class="info-label">ชมรม</div>
                     <div class="info-value">มหิงสา</div>
                 </div>
             </div>
-            <div class="info-grid" style="margin-top: 4px;">
+            <div class="info-grid" style="margin-top: 6px;">
                 <div class="info-row">
                     <div class="info-label">เพื่อนสนิท</div>
                     <div class="info-value">ข้าวหอม</div>
                 </div>
                 <div class="info-row">
-                    <div class="info-label">ความฝัน/อาชีพ</div>
-                    <div class="info-value" style="font-weight: 600; color: #0369a1;">สถาปนิก</div>
+                    <div class="info-label">ความฝัน / อาชีพ</div>
+                    <div class="info-value" style="font-weight: 600; color: #0284c7;">สถาปนิก</div>
                 </div>
             </div>
 
@@ -342,17 +393,17 @@ html_content = """<!DOCTYPE html>
                 </div>
                 <div class="info-row">
                     <div class="info-label">เพลงที่ชอบ</div>
-                    <div class="info-value">สิงคโปร์(feat.SIMON) - 2K,BABYBIGBOY</div>
+                    <div class="info-value">สิงคโปร์ - 2K,BABYBIGBOY</div>
                 </div>
                 <div class="info-row">
-                    <div class="info-label">ซีรีส์/อนิเมะ</div>
+                    <div class="info-label">ซีรีส์ / อนิเมะ</div>
                     <div class="info-value">Wind Breaker</div>
                 </div>
             </div>
 
             <div class="section-title">ทักษะและความสนใจ (Skills & Interests)</div>
-            <div style="margin-top: 5px;">
-                <div style="font-size: 13px; color: #64748b; margin-bottom: 6px; font-weight: 600;">ทักษะความสามารถ:</div>
+            <div style="margin-top: 6px;">
+                <div class="sub-title">⭐ ทักษะความสามารถ:</div>
                 <div class="tags-container">
                     <span class="tag-pill">วาดภาพ</span>
                     <span class="tag-pill">ถ่ายรูป</span>
@@ -360,15 +411,15 @@ html_content = """<!DOCTYPE html>
                 </div>
             </div>
             
-            <div style="margin-top: 15px; display: flex; gap: 20px; flex-wrap: wrap;">
+            <div style="margin-top: 18px; display: flex; gap: 40px; flex-wrap: wrap;">
                 <div>
-                    <div style="font-size: 13px; color: #64748b; margin-bottom: 6px; font-weight: 600;">งานอดิเรก:</div>
+                    <div class="sub-title">🎨 งานอดิเรก:</div>
                     <div class="tags-container">
                         <span class="tag-pill hobby">วาดรูป</span>
                     </div>
                 </div>
                 <div>
-                    <div style="font-size: 13px; color: #64748b; margin-bottom: 6px; font-weight: 600;">กีฬา:</div>
+                    <div class="sub-title">🏸 กีฬา:</div>
                     <div class="tags-container">
                         <span class="tag-pill sport">แบดมินตัน</span>
                     </div>
@@ -380,11 +431,3 @@ html_content = """<!DOCTYPE html>
 
 </body>
 </html>
-"""
-
-# Save the HTML file
-file_path = "student_profile_card.html"
-with open(file_path, "w", encoding="utf-8") as file:
-    file.write(html_content)
-
-print(f"File generated successfully: {file_path}")
